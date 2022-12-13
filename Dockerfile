@@ -9,8 +9,9 @@ COPY ["PriceHunterFilterAPI.csproj", "."]
 RUN dotnet restore "./PriceHunterFilterAPI.csproj"
 COPY . .
 WORKDIR "/src/."
+RUN nuget restore PriceHunterFilterAPI.sln
 RUN dotnet build "PriceHunterFilterAPI.csproj" -c Release -o /app/build
-RUN ls
+
 
 FROM build AS publish
 RUN dotnet publish "PriceHunterFilterAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
