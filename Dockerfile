@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["PriceHunterFilterAPI.csproj", "."]
 RUN dotnet restore "./PriceHunterFilterAPI.csproj"
-RUN nuget restore PriceHunterFilterAPI.sln
+RUN nuget.exe restore PriceHunterFilterAPI.csproj
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "PriceHunterFilterAPI.csproj" -c Release -o /app/build
