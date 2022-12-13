@@ -7,10 +7,10 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["PriceHunterFilterAPI.csproj", "."]
 RUN dotnet restore "./PriceHunterFilterAPI.csproj"
-RUN ls
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "PriceHunterFilterAPI.csproj" -c Release -o /app/build
+RUN ls
 
 FROM build AS publish
 RUN dotnet publish "PriceHunterFilterAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
